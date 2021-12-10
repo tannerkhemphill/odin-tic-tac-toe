@@ -1,0 +1,57 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#board-container {
+    width: 600px;
+    height: 600px;
+    border: 5px solid black;
+    display: flex;
+}
+
+#board {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.square {
+    box-sizing: border-box;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 192px;
+}
+
+.top-left,
+.top-mid,
+.top-right {
+    border-bottom: 2px solid black;
+}
+
+.top-left,
+.mid-left,
+.bot-left {
+    border-right: 2px solid black;
+}
+
+.mid-left,
+.mid-mid,
+.mid-right {
+    
+}
+
+.top-right,
+.mid-right,
+.bot-right {
+    border-left: 2px solid black;
+}
+
+.bot-left,
+.bot-mid,
+.bot-right {
+    border-top: 2px solid black;
+}
