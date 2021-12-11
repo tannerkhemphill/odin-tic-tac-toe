@@ -4,6 +4,18 @@ body {
     align-items: center;
 }
 
+h1 {
+    margin-bottom: 10px;
+}
+
+button {
+    margin-bottom: 10px;
+}
+
+#display {
+    margin-bottom: 10px;
+}
+
 #board-container {
     width: 600px;
     height: 600px;
@@ -36,12 +48,6 @@ body {
 .mid-left,
 .bot-left {
     border-right: 2px solid black;
-}
-
-.mid-left,
-.mid-mid,
-.mid-right {
-    
 }
 
 .top-right,
