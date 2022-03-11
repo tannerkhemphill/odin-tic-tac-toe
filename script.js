@@ -1,10 +1,14 @@
+// Factory function that creates a gameboard object of a tic-tac-toe board
+// consisting of an array of the 9 positions on the board
 const gameBoard = (() => {
     let board = ['', '', '', '', '', '', '', '', ''];
 
+    // Method to place an x or o symbol on a position of the board
     const move = (position, symbol) => {
         board[position] = symbol;
     }
 
+    // Method to clear the board
     const clear = () => {
         board[0] = '';
         board[1] = '';
@@ -17,6 +21,8 @@ const gameBoard = (() => {
         board[8] = '';
     }
 
+    // Method to check the status of the game to see if a player has won
+    // or a tie has occured and return the result
     const checkGameStatus = () => {
         let gameOver = false;
         let result = '';
@@ -66,6 +72,7 @@ const gameBoard = (() => {
     return {board, move, clear, checkGameStatus};
 })();
 
+// Factory function to crate a player object with a name and symbol
 const Player = (name, symbol) => {
     const getName = () => name;
     const getSymbol = () => symbol;
@@ -73,6 +80,8 @@ const Player = (name, symbol) => {
     return {getName, getSymbol};
 };
 
+// Factory function to create an object to control the display of the board
+// on the page via DOM
 const displayController = (() => {
     let player1 = Player('1', 'X');
     let player2 = Player('2', 'O');
@@ -88,12 +97,14 @@ const displayController = (() => {
     const squares = board.querySelectorAll('div');
     let square = Array.from(squares);
 
+    // Method to display the board on the page
     const displayBoard = () => {
         for (let i = 0; i < square.length; i++) {
             square[i].textContent = gameBoard.board[i];
         }
     };
 
+    // Method to change the player after each turn
     const changePlayer = (player) => {
         if (player === player1) {
             player = player2;
@@ -104,6 +115,7 @@ const displayController = (() => {
         return player;
     };
 
+    // Method to continuously change turns until a winner or tie is detected
     const playGame = () => {
         displayBoard();
         gameOver = gameBoard.checkGameStatus()[0];
@@ -125,6 +137,7 @@ const displayController = (() => {
         }
     };
 
+    // Method to play a player's turn and record/display their selection
     const playTurn = (event) => {
         let playerChoice = event.currentTarget.id;
         let playerSymbol = player.getSymbol();
@@ -134,6 +147,7 @@ const displayController = (() => {
         }
     };
 
+    // Method to clear the board and restart a new game
     const restartGame = () => {
         gameOver = false;
         result = '';
@@ -147,8 +161,10 @@ const displayController = (() => {
         displayBoard();
     };
 
+    // Add event listener to restart game button
     button.addEventListener('click', restartGame);
 
+    // Add event listeners to each board position to play a turn
     squares.forEach((square) => {
         square.addEventListener('click', playTurn);
     });
@@ -156,4 +172,5 @@ const displayController = (() => {
     return {displayBoard, playGame, restartGame};
 })();
 
+// Start a new game upon page load
 displayController.restartGame();
